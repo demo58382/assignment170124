@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ImgCard from "./components/ImgCard";
 
-
 function App(props) {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [term, setTerm] = useState("");
 
   useEffect(() => {
+     setIsLoading(true);
     fetch(
       `https://pixabay.com/api/?key=41891025-1d5a256e80a1f85f4a7119442&q=${term}&image_type=photo`,
     )
@@ -21,9 +21,8 @@ function App(props) {
 
   return (
     <>
-  <div>hello</div>
-      
-      <div className="w-screen flex items-center justify-center h-40 bg-slate-400 fixed inset-0 z-50">
+    
+      <div className="w-screen flex items-center justify-center h-20 bg-slate-400 fixed inset-0 z-50">
         <input
           onChange={(e) => setTerm(e.target.value)}
           type="search"
@@ -37,7 +36,7 @@ function App(props) {
       {!isLoading && images.length === 0 && (
         <h1 className="text-center text-4xl mt-44">No Results Found!</h1>
       )}
-      
+
       {isLoading ? (
         <h1 className="text-center text-4xl mt-44">Loading.....</h1>
       ) : (
